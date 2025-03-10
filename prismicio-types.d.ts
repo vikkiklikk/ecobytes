@@ -4,7 +4,7 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HeaderDocumentDataSlicesSlice = HeroSlice;
+type HeaderDocumentDataSlicesSlice = NavigationBarSlice | HeroSlice;
 
 /**
  * Content for Homepage documents
@@ -231,6 +231,81 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceImageRight;
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
+/**
+ * Default variation for Navigation Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NavigationSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *Navigation*
+ */
+type NavigationSliceVariation = NavigationSliceDefault;
+
+/**
+ * Navigation Shared Slice
+ *
+ * - **API ID**: `navigation`
+ * - **Description**: Navigation
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NavigationSlice = prismic.SharedSlice<
+  "navigation",
+  NavigationSliceVariation
+>;
+
+/**
+ * Primary content in *NavigationBar → Default → Primary*
+ */
+export interface NavigationBarSliceDefaultPrimary {
+  /**
+   * navigation field in *NavigationBar → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Here goes nav links
+   * - **API ID Path**: navigation_bar.default.primary.navigation
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  navigation: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for NavigationBar Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NavigationBarSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<NavigationBarSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *NavigationBar*
+ */
+type NavigationBarSliceVariation = NavigationBarSliceDefault;
+
+/**
+ * NavigationBar Shared Slice
+ *
+ * - **API ID**: `navigation_bar`
+ * - **Description**: NavigationBar
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NavigationBarSlice = prismic.SharedSlice<
+  "navigation_bar",
+  NavigationBarSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -262,6 +337,13 @@ declare module "@prismicio/client" {
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceImageRight,
+      NavigationSlice,
+      NavigationSliceVariation,
+      NavigationSliceDefault,
+      NavigationBarSlice,
+      NavigationBarSliceDefaultPrimary,
+      NavigationBarSliceVariation,
+      NavigationBarSliceDefault,
     };
   }
 }

@@ -1,0 +1,14 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"navigation": {
+				"__TYPE__": "FieldContent",
+				"value": "porch",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

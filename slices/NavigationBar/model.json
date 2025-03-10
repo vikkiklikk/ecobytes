@@ -1,0 +1,26 @@
+{
+  "id": "navigation_bar",
+  "type": "SharedSlice",
+  "name": "NavigationBar",
+  "description": "NavigationBar",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "navigation": {
+          "type": "Text",
+          "config": {
+            "label": "navigation",
+            "placeholder": "Here goes nav links"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
